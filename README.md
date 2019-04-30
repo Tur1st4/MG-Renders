@@ -1,5 +1,5 @@
 # MG-Renders
-![Fundador](https://img.shields.io/badge/Fundador-Tur1st4-red.svg?style=for-the-badge&logo=arch-linux) ![Linguagem](https://img.shields.io/badge/Linguagem-Shell%20Script-blue.svg?style=for-the-badge&logo=PowerShell) ![Discord](https://img.shields.io/badge/Chat-Discord-blue.svg?style=for-the-badge&logo=Discord)
+![Fundador](https://img.shields.io/badge/Fundador-Tur1st4-red.svg?style=for-the-badge&logo=arch-linux) ![Linguagem](https://img.shields.io/badge/Linguagem-Shell%20Bash%20Script-blue.svg?style=for-the-badge&logo=PowerShell) ![Discord](https://img.shields.io/badge/Chat-Discord-blue.svg?style=for-the-badge&logo=Discord)
 
 ![Estado](https://img.shields.io/badge/Estado-Em%20Constru%C3%A7%C3%A3o-green.svg?style=for-the-badge)
 
