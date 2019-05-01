@@ -17,15 +17,15 @@ Dê as permissões de execução para o arquivo: `chmod +x INSTALL`
 
 Execute o script com: `./INSTALL`
 
-![1 mg](https://user-images.githubusercontent.com/39463391/56992801-3ff4e000-6b71-11e9-8caf-d3cc3e9efe12.png)
+![1](https://user-images.githubusercontent.com/39463391/57049694-8fa9d900-6c4f-11e9-87ec-384739d6071e.png)
 
 Ele criará as pastas necessárias para a execução do script.
 
-![2 mg](https://user-images.githubusercontent.com/39463391/56992840-569b3700-6b71-11e9-9be8-4aede596b8bb.png)
+![2](https://user-images.githubusercontent.com/39463391/57049696-90426f80-6c4f-11e9-82ab-7c8630d5efa5.png)
 
 Na segunda parte, ele pedirá um local para salvar os renders, coloque por exemplo, `~/Downloads`.
 
-![3 mg](https://user-images.githubusercontent.com/39463391/56992842-5733cd80-6b71-11e9-82b6-aaa8aa4b6ee5.png)
+![3](https://user-images.githubusercontent.com/39463391/57049697-90426f80-6c4f-11e9-949e-ff3fc3ddd861.png)
 
 Depois que o script `INSTALL` for finalizado, execute o `main.sh`.
 
@@ -33,17 +33,17 @@ Se caso precise, dê a permissão de execução: `chmod +x main.sh`.
 
 Faça uma busca no site, e responda se a busca foi no campo `Anime` ou `Hentai`.
 
-![7 mg](https://user-images.githubusercontent.com/39463391/56993090-f2c53e00-6b71-11e9-85f5-eeebab538566.png)
-
-![4 mg](https://user-images.githubusercontent.com/39463391/56992844-5733cd80-6b71-11e9-93a1-6f10963e000d.png)
+![4](https://user-images.githubusercontent.com/39463391/57049698-90db0600-6c4f-11e9-92de-a9b2a9ea27c3.png)
 
 Respondendo, aparecerá um campo para colar a url da busca.
 
-![5 mg](https://user-images.githubusercontent.com/39463391/56992845-5733cd80-6b71-11e9-834e-ab4cfed22568.png)
+![5](https://user-images.githubusercontent.com/39463391/57049700-90db0600-6c4f-11e9-8836-812646765f9d.png)
 
 Copie, cole e tecle `Enter` para começar o download.
 
-![6 mg](https://user-images.githubusercontent.com/39463391/56992839-569b3700-6b71-11e9-9bbc-7263dfe9fb01.png)
+![6](https://user-images.githubusercontent.com/39463391/57049702-90db0600-6c4f-11e9-9a57-7b6bfb8959bb.png)
+
+![7](https://user-images.githubusercontent.com/39463391/57049703-91739c80-6c4f-11e9-88de-f6f55722a7d3.png)
 
 ## Erros e sugestões
 
