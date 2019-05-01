@@ -30,9 +30,9 @@ _download(){
 
 	grep 'mtitle' principal.html | sed 's/^.*href=//' | sed 's/><.*//' > urls.txt
 
-	grep "Next" principal.html | sed "s/^.*href='//" | sed "s/'.*//" | sed "s/    var downPage.*;//" | sed '/^$/d' | sed "s/'.*//" >> $pw/Execucoes/Loop/nextld$next_l_v.txt
+	grep "Next" principal.html | sed "s/^.*href='//" | sed "s/'.*//" | sed "s/    var downPage.*;//" | sed '/^$/d' | sed "s/'.*//" >> "$pw/Execucoes/Loop/nextld$next_l_v.txt"
 
-	cd $pw/Execucoes/Loop
+	cd "$pw/Execucoes/Loop"
 }
 
 _loop(){
@@ -41,7 +41,7 @@ _loop(){
 		do
 			wget -i nextld$next_l_v.txt -O nextll$next_l.html
 			let next_l_v=next_l_v+1;
-			grep "Next" nextll$next_l.html | sed "s/^.*href='//" | sed "s/'.*//" | sed "s/    var downPage.*;//" | sed '/^$/d' | sed "s/'.*//" >> nextld$next_l_v.txt
+			grep "Next" nextll$next_l.html | sed "s/^.*href='//" | sed "s/'.*//" | sed "s/    var downPage.*;//" | sed '/^$/d' | sed "s/'.*//" >> "nextld$next_l_v.txt"
 			let next_l=next_l-1;
 			sla=$(wc -l nextld$next_l_v.txt | awk '{print $1}')
 			if [[  $sla == 0 ]]
@@ -52,19 +52,22 @@ _loop(){
 }
 
 _render(){
-	grep 'mtitle' *.html | sed 's/^.*href=//' | sed 's/><.*//' >> $pw/Execucoes/Principal/urls.txt
+	grep 'mtitle' *.html | sed 's/^.*href=//' | sed 's/><.*//' >> "$pw/Execucoes/Principal/urls.txt"
 
-	cd ..
-	cd ..
-	cd $pw/Execucoes/Principal
+	cd "$pw/Execucoes/Principal"
+
 	grep "'" urls.txt | sed "s/^'//" | sed "s/'.*$//" > urlsd.txt
+
 	pasta_b=$(grep '<center><h1>' principal.html | sed 's/^.*<h1>//' | sed 's/Renders.*//' | sed 's/^.*for //')
 
-	cd $pw/Execucoes/Loop
+	cd "$pw/Execucoes/Loop"
+
 	wget -i "$pw/Execucoes/Principal/urlsd.txt"
+
 	grep "id='arender'" * | sed 's/^.*href=//' | sed 's/ id.*//' | sed "s/^'//" | sed "s/'.*$//" > download.txt
 
 	cd "$save"
+
 	if [[ -d '$pasta_b' ]]
 	then
 		cd "$pasta_b"
@@ -74,7 +77,7 @@ _render(){
 		cd "$pasta_b"
 		wget -i "$pw/Execucoes/Loop/download.txt"
 	fi
-	cd $pw
+	cd "$pw"
 }
 
 _rm(){
@@ -104,7 +107,7 @@ _rodar(){
 }
 
 _contagem(){
-	for n in {0..3}; do
+	for n in {0..2}; do
 		echo -e "\n"
 		echo -en "$branc_n > $res"; echo -en ${_baixar[$n]}
 		_rodar
@@ -114,7 +117,6 @@ _contagem(){
 	if [[ "$?" == "0" ]]
 	then
 		echo -en "$verde_n [ok]$res"
-		rm erro.fodeu
 		kill -USR1 $pid
 		wait $pid
 		trap EXIT
