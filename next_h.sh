@@ -30,9 +30,9 @@ _download(){
 
 	grep 'mtitle' principal.html | sed 's/^.*href=//' | sed 's/><.*//' > urls.txt
 
-	grep "Next" principal.html | sed "s/^.*href='//" | sed "s/'.*//" | sed "s/    var downPage.*;//" | sed '/^$/d' | sed "s/'.*//" >> $pw/Execucoes/Loop/nextld$next_l_v.txt
+	grep "Next" principal.html | sed "s/^.*href='//" | sed "s/'.*//" | sed "s/    var downPage.*;//" | sed '/^$/d' | sed "s/'.*//" >> "$pw/Execucoes/Loop/nextld$next_l_v.txt"
 
-	cd $pw/Execucoes/Loop
+	cd "$pw/Execucoes/Loop"
 }
 
 _loop(){
@@ -52,15 +52,15 @@ _loop(){
 }
 
 _render(){
-	grep 'mtitle' *.html | sed 's/^.*href=//' | sed 's/><.*//' >> $pw/Execucoes/Principal/urls.txt
+	grep 'mtitle' *.html | sed 's/^.*href=//' | sed 's/><.*//' >> "$pw/Execucoes/Principal/urls.txt"
 
 	cd ..
 	cd ..
-	cd $pw/Execucoes/Principal
+	cd "$pw/Execucoes/Principal"
 	grep "'" urls.txt | sed "s/^'//" | sed "s/'.*$//" > urlsd.txt
 	pasta_b=$(grep '<center><h1>' principal.html | sed 's/^.*<h1>//' | sed 's/Renders.*//' | sed 's/^.*de //')
 
-	cd $pw/Execucoes/Loop
+	cd "$pw/Execucoes/Loop"
 	wget -i "$pw/Execucoes/Principal/urlsd.txt"
 	grep "id='arender'" * | sed 's/^.*href=//' | sed 's/ id.*//' | sed "s/^'//" | sed "s/'.*$//" > download.txt
 
@@ -74,7 +74,7 @@ _render(){
 		cd "[Hentai] - $pasta_b"
 		wget -i "$pw/Execucoes/Loop/download.txt"
 	fi
-	cd $pw
+	cd "$pw"
 }
 
 _rm(){
@@ -131,7 +131,7 @@ _contagem(){
 _loop_p(){
 	if [[ $LOOP == @(S|s|Sim|sim|SIM) ]]
 	then
-		$pw/main.sh
+		"$pw/main.sh"
 	elif [[ $LOOP == @(N|n|Nao|nao|NAO|Não|não|NÃO) ]]
 	then
 		clear
