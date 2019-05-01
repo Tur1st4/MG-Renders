@@ -58,7 +58,7 @@ _render(){
 	cd ..
 	cd "$pw/Execucoes/Principal"
 	grep "'" urls.txt | sed "s/^'//" | sed "s/'.*$//" > urlsd.txt
-	pasta_b=$(grep '<center><h1>' principal.html | sed 's/^.*<h1>//' | sed 's/Renders.*//' | sed 's/^.*de //')
+	pasta_b=$(grep '<center><h1>' principal.html | sed 's/^.*<h1>//' | sed 's/ Renders.*//' | sed 's/^.*de //')
 
 	cd "$pw/Execucoes/Loop"
 	wget -i "$pw/Execucoes/Principal/urlsd.txt"
