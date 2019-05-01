@@ -58,7 +58,7 @@ _render(){
 
 	grep "'" urls.txt | sed "s/^'//" | sed "s/'.*$//" > urlsd.txt
 
-	pasta_b=$(grep '<center><h1>' principal.html | sed 's/^.*<h1>//' | sed 's/Renders.*//' | sed 's/^.*for //')
+	pasta_b=$(grep '<center><h1>' principal.html | sed 's/^.*<h1>//' | sed 's/ Renders.*//' | sed 's/^.*for //')
 
 	cd "$pw/Execucoes/Loop"
 
