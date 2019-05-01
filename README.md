@@ -9,6 +9,8 @@ Use o comando: `git clone https://github.com/Tur1st4/MG-Renders.git`
 
 ## Como usar
 
+[Vídeo no Youtube](https://youtu.be/MfxeHZ1gRtA)
+
 Entre na pasta com o comando: `cd MG-Renders`
 
 Dê as permissões de execução para o arquivo: `chmod +x INSTALL`
