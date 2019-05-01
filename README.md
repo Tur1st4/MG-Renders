@@ -23,7 +23,7 @@ Ele criará as pastas necessárias para a execução do script.
 
 ![2](https://user-images.githubusercontent.com/39463391/57049696-90426f80-6c4f-11e9-82ab-7c8630d5efa5.png)
 
-Na segunda parte, ele pedirá um local para salvar os renders, coloque por exemplo, `~/Downloads`.
+Na segunda parte, ele pedirá um local para salvar os renders, coloque por exemplo, `$HOME/Downloads`.
 
 ![3](https://user-images.githubusercontent.com/39463391/57049697-90426f80-6c4f-11e9-949e-ff3fc3ddd861.png)
 
