@@ -107,7 +107,7 @@ _rodar(){
 }
 
 _contagem(){
-	for n in {0..2}; do
+	for n in {0..3}; do
 		echo -e "\n"
 		echo -en "$branc_n > $res"; echo -en ${_baixar[$n]}
 		_rodar
@@ -133,7 +133,7 @@ _contagem(){
 _loop_p(){
 	if [[ $LOOP == @(S|s|Sim|sim|SIM) ]]
 	then
-		$pw/main.sh
+		"$pw/main.sh"
 	elif [[ $LOOP == @(N|n|Nao|nao|NAO|Não|não|NÃO) ]]
 	then
 		clear
