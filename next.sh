@@ -66,6 +66,8 @@ _render(){
 
 	grep "id='arender'" * | sed 's/^.*href=//' | sed 's/ id.*//' | sed "s/^'//" | sed "s/'.*$//" > download.txt
 
+	img_b=$(wc -l download.txt | awk '{print $1}')
+
 	cd "$save"
 
 	if [[ -d '$pasta_b' ]]
@@ -77,12 +79,12 @@ _render(){
 		cd "$pasta_b"
 		wget -i "$pw/Execucoes/Loop/download.txt"
 	fi
-	cd "$pw"
 }
 
 _rm(){
-	rm Execucoes/Principal/*
-	rm Execucoes/Loop/*
+	rm "$pw/Execucoes/Principal/"*
+	rm "$pw/Execucoes/Loop/"*
+	rm "erro.fodeu"
 }
 
 declare -x _baixar=("Baixando e manipulando os .htmls..."
@@ -133,7 +135,8 @@ _contagem(){
 _loop_p(){
 	if [[ $LOOP == @(S|s|Sim|sim|SIM) ]]
 	then
-		"$pw/main.sh"
+		cd "$pw"
+		./main.sh
 	elif [[ $LOOP == @(N|n|Nao|nao|NAO|Não|não|NÃO) ]]
 	then
 		clear
@@ -143,15 +146,20 @@ _loop_p(){
 	else
 		echo -e "\n"
 		echo -e "Não cosegui entender..."
+		setterm -cursor on
 		echo -e "$branc_n\nDeseja fazer outro download? [S/N]\c$res"
 		read LOOP
+		setterm -cursor off
 		_loop_p
 	fi
 }
 
 
+echo -e "$verm_n\n --> A$res"
+setterm -cursor on
 echo -e "\n$branc_n Cole aqui a url: $res\c"
 read PASTE
+setterm -cursor off
 
 clear
 
@@ -165,12 +173,18 @@ _contagem
 
 echo -e "\n"
 
+echo -e "$verde_n >$res Imagens baixadas: $img_b"
+
+echo -e "\n"
+
 echo -e "$verde_n >>$res O seu download foi concluido com sucesso! $verde_n<< $res"
 
 echo -e "\n"
 
+setterm -cursor on
 echo -e "$branc_n Deseja fazer outro download? [S/N]\c$res"
 read LOOP
+setterm -cursor off
 
 _loop_p
 
