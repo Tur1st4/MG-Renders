@@ -13,9 +13,9 @@ Use o comando: `git clone https://github.com/Tur1st4/MG-Renders.git`
 
 Entre na pasta com o comando: `cd MG-Renders`
 
-Dê as permissões de execução para o arquivo: `chmod +x INSTALL`
+Dê as permissões de execução para todos os arquivos: `chmod +x *`
 
-Execute o script com: `./INSTALL`
+Execute o instalador com: `./INSTALL`
 
 ![1](https://user-images.githubusercontent.com/39463391/57049694-8fa9d900-6c4f-11e9-87ec-384739d6071e.png)
 
@@ -28,8 +28,6 @@ Na segunda parte, ele pedirá um local para salvar os renders, coloque por exemp
 ![3](https://user-images.githubusercontent.com/39463391/57049697-90426f80-6c4f-11e9-949e-ff3fc3ddd861.png)
 
 Depois que o script `INSTALL` for finalizado, execute o `main.sh`.
-
-Se caso precise, dê a permissão de execução: `chmod +x main.sh`.
 
 Faça uma busca no site, e responda se a busca foi no campo `Anime` ou `Hentai`.
 
