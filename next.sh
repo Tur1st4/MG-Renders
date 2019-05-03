@@ -22,15 +22,23 @@ next_l_v=1
 
 save=$(cat "$pw/Execucoes/save.tur1st4")
 
+centro=$(( $(tput cols) /3 +4 ))
+
+quarto=$(( $(tput cols) /4 +4 ))
+
+dec_sex=$(( $(tput cols) /16 +4 ))
+
+baixar_l=2
+
 
 _download(){
 	cd "$pasta_exec/Principal"
 
 	wget "$PASTE" -O principal.html
 
-	grep 'mtitle' principal.html | sed 's/^.*href=//' | sed 's/><.*//' > urls.txt
+	grep 'mtitle' principal.html | sed -f "$pw/Sed/titulo.sed" > urls.txt
 
-	grep "Next" principal.html | sed "s/^.*href='//" | sed "s/'.*//" | sed "s/    var downPage.*;//" | sed '/^$/d' | sed "s/'.*//" >> "$pw/Execucoes/Loop/nextld$next_l_v.txt"
+	grep "Next" principal.html | sed -f "$pw/Sed/prox.sed" >> "$pw/Execucoes/Loop/nextld$next_l_v.txt"
 
 	cd "$pw/Execucoes/Loop"
 }
@@ -41,7 +49,7 @@ _loop(){
 		do
 			wget -i nextld$next_l_v.txt -O nextll$next_l.html
 			let next_l_v=next_l_v+1;
-			grep "Next" nextll$next_l.html | sed "s/^.*href='//" | sed "s/'.*//" | sed "s/    var downPage.*;//" | sed '/^$/d' | sed "s/'.*//" >> "nextld$next_l_v.txt"
+			grep "Next" nextll$next_l.html | sed -f "$pw/Sed/prox.sed" >> "nextld$next_l_v.txt"
 			let next_l=next_l-1;
 			sla=$(wc -l nextld$next_l_v.txt | awk '{print $1}')
 			if [[  $sla == 0 ]]
@@ -52,19 +60,19 @@ _loop(){
 }
 
 _render(){
-	grep 'mtitle' *.html | sed 's/^.*href=//' | sed 's/><.*//' >> "$pw/Execucoes/Principal/urls.txt"
+	grep 'mtitle' *.html | sed -f "$pw/Sed/titulo.sed" >> "$pw/Execucoes/Principal/urls.txt"
 
 	cd "$pw/Execucoes/Principal"
 
-	grep "'" urls.txt | sed "s/^'//" | sed "s/'.*$//" > urlsd.txt
+	grep "'" urls.txt | sed -f "$pw/Sed/pont.sed" >> "$pw/Execucoes/Principal/urlsd.txt"
 
-	pasta_b=$(grep '<center><h1>' principal.html | sed 's/^.*<h1>//' | sed 's/ Renders.*//' | sed 's/^.*for //')
+	pasta_b=$(grep '<center><h1>' principal.html | sed -f "$pw/Sed/pasta_b.sed")
 
 	cd "$pw/Execucoes/Loop"
 
 	wget -i "$pw/Execucoes/Principal/urlsd.txt"
 
-	grep "id='arender'" * | sed 's/^.*href=//' | sed 's/ id.*//' | sed "s/^'//" | sed "s/'.*$//" > download.txt
+	grep "id='arender'" * | sed -f "$pw/Sed/down.sed" > download.txt
 
 	img_b=$(wc -l download.txt | awk '{print $1}')
 
@@ -111,6 +119,7 @@ _rodar(){
 _contagem(){
 	for n in {0..3}; do
 		echo -e "\n"
+		tput cup $baixar_l $quarto
 		echo -en "$branc_n > $res"; echo -en ${_baixar[$n]}
 		_rodar
 
@@ -118,11 +127,13 @@ _contagem(){
 
 	if [[ "$?" == "0" ]]
 	then
+		let baixar_l=baixar_l+2
 		echo -en "$verde_n [ok]$res"
 		kill -USR1 $pid
 		wait $pid
 		trap EXIT
 	else
+		let baixar_l=baixar_l+2
 		echo -en "$verm_n [erro]$res"
 		setterm -cursor on
 		kill -USR1 $pid
@@ -140,25 +151,40 @@ _loop_p(){
 	elif [[ $LOOP == @(N|n|Nao|nao|NAO|Não|não|NÃO) ]]
 	then
 		clear
-		echo -e "\nO script foi finalizado com sucesso! ^-^\n"
+		tput cup 2 $quarto
+		echo -e "O script foi finalizado com sucesso! ^-^\n"
                 setterm -cursor on
                 exit 0
 	else
-		echo -e "\n"
+		let baixar_l=baixar_l+2
+		tput cup $baixar_l $dec_sex
 		echo -e "Não cosegui entender..."
 		setterm -cursor on
-		echo -e "$branc_n\nDeseja fazer outro download? [S/N]\c$res"
+		let baixar_l=baixar_l+1
+		tput cup $baixar_l $dec_sex
+		echo -e "$branc_n Deseja fazer outro download? [S/N]\c$res"
 		read LOOP
 		setterm -cursor off
 		_loop_p
 	fi
 }
 
+let loop=loop+1
 
-echo -e "$verm_n\n --> A$res"
+tput cup $loop $dec_sex
+
+echo -e "$verm_n --> A$res"
+
 setterm -cursor on
-echo -e "\n$branc_n Cole aqui a url: $res\c"
+
+let loop=loop+2
+
+tput cup $loop $dec_sex
+
+echo -e "$branc_n Cole aqui a url: $res\c"
+
 read PASTE
+
 setterm -cursor off
 
 clear
@@ -171,19 +197,26 @@ _contagem
 
 #rodar
 
-echo -e "\n"
+tput cup $baixar_l $quarto
 
 echo -e "$verde_n >$res Imagens baixadas: $img_b"
 
-echo -e "\n"
+let baixar_l=baixar_l+2
 
-echo -e "$verde_n >>$res O seu download foi concluido com sucesso! $verde_n<< $res"
+tput cup $baixar_l $quarto
 
-echo -e "\n"
+echo -e "$verde_n >>$res O seu download foi concluido com sucesso!"
+
+let baixar_l=baixar_l+2
 
 setterm -cursor on
+
+tput cup $baixar_l $dec_sex
+
 echo -e "$branc_n Deseja fazer outro download? [S/N]\c$res"
+
 read LOOP
+
 setterm -cursor off
 
 _loop_p
