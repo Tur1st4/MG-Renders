@@ -18,6 +18,8 @@ res='\e[m'
 
 pasta_exec="Execucoes"
 
+pw=$(pwd)
+
 x=0
 
 sg=0
@@ -228,6 +230,8 @@ while [[ "$contagem" -ge "0" ]]; do
 	sleep 1
 	let contagem=contagem-1
 done
+
+chmod +x "$pw/Sed"*
 
 clear
 
