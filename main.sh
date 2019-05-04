@@ -13,6 +13,16 @@ verm_n='\e[01;31m'
 
 res='\e[m'
 
+pw=$(pwd)
+
+centro=$(( $(tput cols) /3 ))
+
+quarto=$(( $(tput cols) /4 +4 ))
+
+dec_sex=$(( $(tput cols) /16 +4 ))
+
+export loop=14
+
 #========================| FUNÇÕES |========================#
 
 _ctrl_c(){
@@ -43,13 +53,23 @@ _loop_dec(){
 	then
 		./next.sh
 	else
-		echo -e "\n"
+		tput cup $loop $dec_sex
 		
 		echo -e "Não consegui entender..."
+		
+		setterm -cursor on
+		
+		let loop=loop+1
+		
+		tput cup  $loop $dec_sex
 		
 		echo -e "Você pesquisou por Renders Hentai ou Renders Anime? [H/A]\c"
 		
 		read dec
+		
+		let loop=loop+2
+		
+		setterm -cursor off
 		
 		_loop_dec
 	fi
@@ -63,24 +83,47 @@ setterm -cursor off
 
 trap _ctrl_c SIGINT SIGTERM
 
-cat <<MEN
+tput cup 2 $quarto
 
-                 DOWNLOAD MG-RENDERS :~
-    =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+echo -e "         DOWNLOAD MG-RENDERS :~"
 
-      Para começar faça uma busca no site:
-       -> mg-renders.net
+tput cup 3 $quarto
 
-      Depois, só copiar a url e colar aqui
-    em baixo.
+echo -e "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
 
-    =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+tput cup 4 $quarto
 
-MEN
+echo -e " Para começar faça uma busca no site:"
 
-echo -e "Antes me diga uma coisa... \nVocê pesquisou por Renders Hentai ou Renders Anime? [H/A]\c"
+tput cup 5 $quarto
+
+echo -e "  -> mg-renders.net"
+
+tput cup 7 $quarto
+
+echo -e " Depois, só copiar a url e colar aqui"
+
+tput cup 8 $quarto
+
+echo -e "em baixo."
+
+tput cup 9 $quarto
+
+echo -e "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n"
+
+setterm -cursor on
+
+tput cup 11 $dec_sex
+
+echo -e "Antes me diga uma coisa..."
+
+tput cup 12 $dec_sex
+
+echo -e "Você pesquisou por Renders Hentai ou Renders Anime? [H/A]\c"
 
 read dec
+
+setterm -cursor off
 
 _loop_dec
 
