@@ -231,7 +231,7 @@ clear
 
 echo -e "\n"
 
-_contagem
+_verificacao
 
 echo -ne "Preparando a segunda etapa"
 
