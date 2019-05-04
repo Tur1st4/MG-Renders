@@ -50,16 +50,16 @@ _manipulando_loop(){
 		while [[ "$sla" != 0 ]]
 		do
 			wget -i nextld$next_l_v.txt -O nextll$next_l.html
-			
-            let next_l_v=next_l_v+1;
-			
-            grep "Next" nextll$next_l.html | sed -f "$pw/Sed/prox.sed" >> "nextld$next_l_v.txt"
-			
-            let next_l=next_l-1;
-			
-            sla=$(wc -l nextld$next_l_v.txt | awk '{print $1}')
-			
-            if [[  $sla == 0 ]]
+
+	            	let next_l_v=next_l_v+1;
+
+        	    	grep "Next" nextll$next_l.html | sed -f "$pw/Sed/prox.sed" >> "nextld$next_l_v.txt"
+
+			let next_l=next_l-1;
+
+            		sla=$(wc -l nextld$next_l_v.txt | awk '{print $1}')
+
+            		if [[  $sla == 0 ]]
 			then
 				break
 			fi
@@ -89,39 +89,36 @@ _download_renders(){
 	then
 		cd "$pasta_b"
 		
-        wget -i "$pw/Execucoes/Loop/download.txt"
+        	wget -i "$pw/Execucoes/Loop/download.txt"
 	else
 		mkdir "$pasta_b"
 		
-        cd "$pasta_b"
+        	cd "$pasta_b"
 		
-        wget -i "$pw/Execucoes/Loop/download.txt"
+        	wget -i "$pw/Execucoes/Loop/download.txt"
 	fi
 }
 
 _apagar_inuteis(){
 	rm "$pw/Execucoes/Principal/"*
 	
-    rm "$pw/Execucoes/Loop/"*
+    	rm "$pw/Execucoes/Loop/"*
 	
-    rm "erro.fodeu"
+    	rm "erro.fodeu"
 }
 
 declare -x _frases=("Baixando e manipulando os .htmls..."
-		    
+
             "Baixando e manipulando proximos...."
-		    
+
             "Baixando as imagens................"
-		    
+
             "Apagando arquivos desnecessários..."
 )
 
 declare -x _comandos=("_manipulando_inicio"
-		      
               "_manipulando_loop"
-		      
               "_download_renders"
-		      
               "_apagar_inuteis"
 )
 
@@ -131,45 +128,45 @@ _rodar(){
 		do
 			trap "exit" SIGUSR1
 		done; } &
-		
+
         pid=$!
 }
 
 _verificacao(){
 	for n in {0..3}; do
 		echo -e "\n"
-		
-        tput cup $baixar_l $quarto
-		
-        echo -en "$branc_n > $res"; echo -en ${_frases[$n]}
-		
-        _rodar
 
-	sleep 2; eval ${_comandos[$n]} >> erro.fodeu 2>erro.fodeu
+        	tput cup $baixar_l $quarto
+		
+        	echo -en "$branc_n > $res"; echo -en ${_frases[$n]}
+		
+        	_rodar
+
+		sleep 2; eval ${_comandos[$n]} >> erro.fodeu 2>erro.fodeu
 
 	if [[ "$?" == "0" ]]
 	then
 		let baixar_l=baixar_l+2
 		
-        echo -en "$verde_n [ok]$res"
+        	echo -en "$verde_n [ok]$res"
 		
-        kill -USR1 $pid
+        	kill -USR1 $pid
 		
-        wait $pid
+        	wait $pid
 		
-        trap EXIT
+        	trap EXIT
 	else
 		let baixar_l=baixar_l+2
         
-        echo -en "$verm_n [erro]$res"
+        	echo -en "$verm_n [erro]$res"
 		
-        setterm -cursor on
+        	setterm -cursor on
 		
-        kill -USR1 $pid
+        	kill -USR1 $pid
 		
-        trap EXIT
+        	trap EXIT
 		
-        exit $?
+        	exit $?
 	fi
 	done
 }
@@ -179,38 +176,38 @@ _finalizar(){
 	then
 		cd "$pw"
 		
-        ./main.sh
+        	./main.sh
 	elif [[ $LOOP == @(N|n|Nao|nao|NAO|Não|não|NÃO) ]]
 	then
 		clear
 		
-        tput cup 2 $quarto
+        	tput cup 2 $quarto
 		
-        echo -e "O script foi finalizado com sucesso! ^-^\n"
+        	echo -e "O script foi finalizado com sucesso! ^-^\n"
         
-        setterm -cursor on
+        	setterm -cursor on
         
-        exit 0
+        	exit 0
 	else
 		let baixar_l=baixar_l+2
 		
-        tput cup $baixar_l $dec_sex
+        	tput cup $baixar_l $dec_sex
 		
-        echo -e "Não cosegui entender..."
+        	echo -e "Não cosegui entender..."
 		
-        setterm -cursor on
+        	setterm -cursor on
 		
-        let baixar_l=baixar_l+1
+        	let baixar_l=baixar_l+1
 		
-        tput cup $baixar_l $dec_sex
+        	tput cup $baixar_l $dec_sex
 		
-        echo -e "$branc_n Deseja fazer outro download? [S/N]\c$res"
+        	echo -e "$branc_n Deseja fazer outro download? [S/N]\c$res"
 		
-        read LOOP
+        	read LOOP
 		
-        setterm -cursor off
+        	setterm -cursor off
 		
-        _loop_p
+        	_loop_p
 	fi
 }
 
