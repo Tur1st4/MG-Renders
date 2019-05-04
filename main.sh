@@ -1,6 +1,7 @@
 #!/bin/bash
 # Arquivo principal para o programa
 
+#========================| VARIAVEIS |========================#
 
 azul_n='\e[01;44m'
 
@@ -12,16 +13,25 @@ verm_n='\e[01;31m'
 
 res='\e[m'
 
+#========================| FUNÇÕES |========================#
 
 _ctrl_c(){
 	rm Execucoes/Principal/*
+	
 	rm Execucoes/Loop/*
+	
 	rm erro.fodeu
+	
 	clear
+	
 	echo -e "\n"
+	
 	echo -e "Você apertou$verm_n Ctrl+C$res.\nEntão sou obrigado a parar ;-;"
+	
 	echo -e "\n"
+	
 	setterm -cursor on
+	
 	exit 127
 }
 
@@ -34,12 +44,18 @@ _loop_dec(){
 		./next.sh
 	else
 		echo -e "\n"
+		
 		echo -e "Não consegui entender..."
+		
 		echo -e "Você pesquisou por Renders Hentai ou Renders Anime? [H/A]\c"
+		
 		read dec
+		
 		_loop_dec
 	fi
 }
+
+#========================| INICIALIZAR |========================#
 
 clear
 
@@ -63,6 +79,7 @@ cat <<MEN
 MEN
 
 echo -e "Antes me diga uma coisa... \nVocê pesquisou por Renders Hentai ou Renders Anime? [H/A]\c"
+
 read dec
 
 _loop_dec

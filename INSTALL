@@ -2,9 +2,10 @@
 
 # Autor          :        Paulo Jacob [ Tur1st4 ]
 # Descrição      :        Criar as pastas necessárias para o download de suas buscas no site MG-Renders.net
-# Versão         :        0.3
+# Versão         :        0.4
 # Licença        :        MIT License
 
+#========================| VARIAVEIS |========================#
 
 azul_n='\e[01;44m'
 
@@ -24,12 +25,17 @@ sg=0
 
 contagem=3
 
+#========================| FUNÇÕES |========================#
 
 _ctrl_c(){
 	echo -e "\n"
+	
 	echo -e "Você apertou$verm_n Ctrl+C$res.\nEntão sou obrigado a parar ;-;"
+	
 	echo -e "\n"
+	
 	setterm -cursor on
+	
 	exit 127
 }
 
@@ -61,13 +67,17 @@ _loop(){
 }
 
 declare -x _pastas=("Criando a pasta Execucoes..."
-		    "Criando a pasta Principal..."
-		    "Criando a pasta Loop........"
+		    
+			"Criando a pasta Principal..."
+		    
+			"Criando a pasta Loop........"
 )
 
 declare -x _comandos=("_execucoes"
-		      "_principal"
-		      "_loop"
+		     
+			  "_principal"
+		      
+			  "_loop"
 )
 
 _rodar(){
@@ -76,12 +86,14 @@ _rodar(){
 		do
 			trap "exit" SIGUSR1
 		done; } &
+		
 		pid=$!
 }
 
-_contagem(){
+_verificacao(){
 	for n in {0..2}; do
 		echo -en "$branc_n > $res"; echo -en ${_pastas[$n]}
+		
 		_rodar
 
 	sleep 2; eval ${_comandos[$n]} >> erro.fodeu 2>erro.fodeu
@@ -89,16 +101,25 @@ _contagem(){
 	if [[ "$?" == "0" ]]
 	then
 		echo -en "$verde_n [ok]$res"
+		
 		echo -e "\n"
+		
 		kill -USR1 $pid
+		
 		wait $pid
+		
 		trap EXIT
 	else
 		echo -en "$verm_n [erro]$res"
+		
 		echo -e "\n"
+		
 		setterm -cursor on
+		
 		kill -USR1 $pid
+		
 		trap EXIT
+		
 		exit $?
 	fi
 	done
@@ -110,19 +131,26 @@ _check_save(){
 		echo $LOC > Execucoes/save.tur1st4
 	else
 		clear
+		
 		echo -e "\n"
+		
 		echo -e "$verm_n <$res O local não existe. Cheque se você escreveu corretamente. $verm_n> $res"
+		
 		_local_save
 	fi
 }
 
 _local_save(){
 	echo -e "\n"
+	
 	echo -e "$verde_n >$res Coloque o local onde deseja salvar seus renders: \c"
+	
 	read LOC
+	
 	_check_save
 }
 
+#========================| INICIALIZAR |========================#
 
 clear
 
@@ -165,27 +193,37 @@ read INS
 if [[ "$INS" == @(S|s|sim|Sim|SIM) ]]
 then
 	echo
+	
 	echo -ne "Preparando instalação"
+	
 	while [[ "$x" -le "3" ]]; do
 		if [[ "$x" -lt "3" ]]
 		then
 			echo -ne "$verde_n.$res"
 		fi
 		sleep 0.8
+		
 		let x=x+1
 	done
 elif [[ "$INS" == @(N|n|nao|não|Não|Nao|NAO|NÃO) ]]
 then
 	clear
+	
 	echo
+	
 	echo -e "$verm_n \bVocê cancelou$res ._."
+	
 	echo
+	
 	exit 1
 else
 	clear
 	echo
+	
 	echo -e "$verm_n >$res Não consigo entender essa resposta .-.\nMe execute de novo."
+	
 	echo
+	
 	exit $?
 fi
 
@@ -197,12 +235,14 @@ _contagem
 
 echo -ne "Preparando a segunda etapa"
 
-while [[ "$sg" -le "3" ]]; do
+while [[ "$sg" -le "3" ]]
+do
 	if [[ "$sg" -lt "3" ]]
 	then
 		echo -ne "$verde_n.$res"
 	fi
 	sleep 0.8
+	
 	let sg=sg+1
 done
 
@@ -220,16 +260,16 @@ contagem=3
 
 echo -ne "Saindo do instalador em $contagem"
 
-while [[ "$contagem" -ge "0" ]]; do
+while [[ "$contagem" -ge "0" ]]
+do
 	if [[ "$contagem" -ge "0" ]]
 	then
 		echo -ne "$verm_n\b$contagem$res"
 	fi
 	sleep 1
+	
 	let contagem=contagem-1
 done
-
-chmod +x Sed/*
 
 clear
 
