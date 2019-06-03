@@ -52,22 +52,14 @@ _loop_dec(){
 	elif [[ $dec == @(A|a|Anime|anime|ANIME) ]]
 	then
 		./next.sh
-	else
-		tput cup $loop $dec_sex
-		
+	else	
 		echo -e "Não consegui entender..."
 		
 		setterm -cursor on
 		
-		let loop=loop+1
-		
-		tput cup  $loop $dec_sex
-		
 		echo -e "Você pesquisou por Renders Hentai ou Renders Anime? [H/A]\c"
 		
 		read dec
-		
-		let loop=loop+2
 		
 		setterm -cursor off
 		
@@ -83,41 +75,23 @@ setterm -cursor off
 
 trap _ctrl_c SIGINT SIGTERM
 
-tput cup 2 $quarto
+echo -e "\n         DOWNLOAD MG-RENDERS :~"
 
-echo -e "         DOWNLOAD MG-RENDERS :~"
+echo -e "\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
 
-tput cup 3 $quarto
+echo -e "\n Para começar faça uma busca no site:"
 
-echo -e "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
+echo -e "\n  -> mg-renders.net"
 
-tput cup 4 $quarto
-
-echo -e " Para começar faça uma busca no site:"
-
-tput cup 5 $quarto
-
-echo -e "  -> mg-renders.net"
-
-tput cup 7 $quarto
-
-echo -e " Depois, só copiar a url e colar aqui"
-
-tput cup 8 $quarto
+echo -e "\n Depois, só copiar a url e colar aqui"
 
 echo -e "em baixo."
 
-tput cup 9 $quarto
-
-echo -e "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n"
-
-setterm -cursor on
-
-tput cup 11 $dec_sex
+echo -e "\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n"
 
 echo -e "Antes me diga uma coisa..."
 
-tput cup 12 $dec_sex
+setterm -cursor on
 
 echo -e "Você pesquisou por Renders Hentai ou Renders Anime? [H/A]\c"
 
