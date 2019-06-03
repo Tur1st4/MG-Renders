@@ -135,8 +135,6 @@ _rodar(){
 _verificacao(){
 	for n in {0..3}; do
 		echo -e "\n"
-
-        	tput cup $baixar_l $quarto
 		
         	echo -en "$branc_n > $res"; echo -en ${_frases[$n]}
 		
@@ -146,8 +144,6 @@ _verificacao(){
 
 	if [[ "$?" == "0" ]]
 	then
-		let baixar_l=baixar_l+2
-		
         	echo -en "$verde_n [ok]$res"
 		
         	kill -USR1 $pid
@@ -156,8 +152,6 @@ _verificacao(){
 		
         	trap EXIT
 	else
-		let baixar_l=baixar_l+2
-        
         	echo -en "$verm_n [erro]$res"
 		
         	setterm -cursor on
@@ -181,27 +175,17 @@ _finalizar(){
 	then
 		clear
 		
-        	tput cup 2 $quarto
-		
-        	echo -e "O script foi finalizado com sucesso! ^-^\n"
+        	echo -e "\n         O script foi finalizado com sucesso! ^-^\n"
         
         	setterm -cursor on
         
         	exit 0
 	else
-		let baixar_l=baixar_l+2
-		
-        	tput cup $baixar_l $dec_sex
-		
         	echo -e "Não cosegui entender..."
 		
         	setterm -cursor on
 		
-        	let baixar_l=baixar_l+1
-		
-        	tput cup $baixar_l $dec_sex
-		
-        	echo -e "$branc_n Deseja fazer outro download? [S/N]\c$res"
+        	echo -e "$branc_n Deseja fazer outro download? [S/N]$res\c"
 		
         	read LOOP
 		
@@ -213,19 +197,11 @@ _finalizar(){
 
 #========================| INICIALIZAR |========================#
 
-let loop=loop+1
-
-tput cup $loop $dec_sex
-
-echo -e "$verm_n --> A$res"
+echo -e "$verm_n\n --> A$res"
 
 setterm -cursor on
 
-let loop=loop+2
-
-tput cup $loop $dec_sex
-
-echo -e "$branc_n Cole aqui a url: $res\c"
+echo -e "$branc_n\n  Cole aqui a url: $res\c"
 
 read PASTE
 
@@ -235,23 +211,13 @@ clear
 
 _verificacao
 
-tput cup $baixar_l $quarto
+echo -e "$verde_n\n\n >$res Imagens baixadas: $img_b"
 
-echo -e "$verde_n >$res Imagens baixadas: $img_b"
-
-let baixar_l=baixar_l+2
-
-tput cup $baixar_l $quarto
-
-echo -e "$verde_n >>$res O seu download foi concluido com sucesso!"
-
-let baixar_l=baixar_l+2
+echo -e "$verde_n\n >>$res O seu download foi concluido com sucesso!"
 
 setterm -cursor on
 
-tput cup $baixar_l $dec_sex
-
-echo -e "$branc_n Deseja fazer outro download? [S/N]\c$res"
+echo -e "$branc_n\n Deseja fazer outro download? [S/N]$res\c"
 
 read LOOP
 
