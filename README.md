@@ -1,5 +1,5 @@
 # MG-Renders
-![Fundador](https://img.shields.io/badge/Fundador-Tur1st4-red.svg?style=for-the-badge&logo=arch-linux) ![Linguagem](https://img.shields.io/badge/Linguagem-Shell%20Bash%20Script-blue.svg?style=for-the-badge&logo=PowerShell) ![Discord](https://img.shields.io/badge/Chat-Discord-blue.svg?style=for-the-badge&logo=Discord)
+![Fundador](https://img.shields.io/badge/Fundador-Tur1st4-red.svg?style=for-the-badge&logo=arch-linux) ![Linguagem](https://img.shields.io/badge/Linguagem-Shell%20Bash%20Script-blue.svg?style=for-the-badge&logo=PowerShell)
 
 ![Estado](https://img.shields.io/badge/Estado-Em%20Constru%C3%A7%C3%A3o-green.svg?style=for-the-badge)
 
@@ -52,9 +52,6 @@ Caso encontre algum erro, reporte no Issues, ou se você sabe corrigir o erro, n
 Obrigado a todos os envolvidos no projeto, que por enquanto só está eu :joy:.
 
 
-
-Caso queira conversar sobre o projeto ou qualquer assunto que te interesse, entre no meu servidor do [Discord](https://discord.gg/HjRDBQQ).
-Onde estou desenvolvendo bots próprios e sempre fazendo zueirinhas!
 
 Conheça meu repositório de Wallpapers criados por mim [Wallpapers](https://github.com/Tur1st4/Wallpapers)
 
